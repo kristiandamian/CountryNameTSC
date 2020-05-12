@@ -33,6 +33,39 @@ namespace CountryName.DAL
             return data;
         }
 
+        public async Task<Models.Subdivision> EditAsync(int idCountry, Models.Subdivision subdivision)
+        {
+            Models.Subdivision data = null;
+            try
+            {
+                var uri = new Uri($"{this.URL}/countries/{idCountry}/subdivisions/{subdivision.id}");
+
+                var json = JsonConvert.SerializeObject(subdivision);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), uri);
+                request.Content = content;
+                var response = await cliente.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var contentResponse = await response.Content.ReadAsStringAsync();
+                    data = JsonConvert.DeserializeObject<Models.Subdivision>(contentResponse);
+                }
+                if ((int)response.StatusCode > 400)
+                {
+                    data = new Models.Subdivision();
+                    var contentResponse = await response.Content.ReadAsStringAsync();
+                    data.Error = JsonConvert.DeserializeObject<Models.Error>(contentResponse);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return data;
+        }
+
         public async Task<Models.Subdivision> SaveAsync(int idCountry,Models.Subdivision subdivision)
         {
             Models.Subdivision data = null;
@@ -68,7 +101,7 @@ namespace CountryName.DAL
             Models.Subdivision data = null;
             try
             {
-                var uri = new Uri($"{this.URL}/countries/{idCountry}/subdivisons/{idSubdivision}");
+                var uri = new Uri($"{this.URL}/countries/{idCountry}/subdivisions/{idSubdivision}");
 
                 var response = await cliente.DeleteAsync(uri);
                 if (response.IsSuccessStatusCode)

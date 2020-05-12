@@ -136,7 +136,7 @@ namespace CountryName.ViewModels
 
                     }
                     else
-                        LoadItemsCommand();
+                        Items.Remove(subdivision);
                 }
             }
         }

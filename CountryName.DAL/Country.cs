@@ -34,12 +34,45 @@ namespace CountryName.DAL
             return data;
         }
 
+        public async Task<Models.Country> EditAsync(Models.Country Country)
+        {
+            Models.Country data = null;
+            try
+            {
+                var uri = new Uri($"{this.URL}/countries/{Country.id}");
 
+                var json = JsonConvert.SerializeObject(Country);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), uri);
+                request.Content = content;
+                var response = await cliente.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var contentResponse = await response.Content.ReadAsStringAsync();
+                    data = JsonConvert.DeserializeObject<Models.Country>(contentResponse);
+                }
+                if ((int)response.StatusCode > 400)
+                {
+                    data = new Models.Country();
+                    var contentResponse = await response.Content.ReadAsStringAsync();
+                    data.Error = JsonConvert.DeserializeObject<Models.Error>(contentResponse);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+            return data;
+        }
         public async Task<Models.Country> SaveAsync( Models.Country Country)
         {
             Models.Country data = null;
             try
             {
+                if (Country.id.HasValue)
+                    return await EditAsync(Country);
                 var uri = new Uri($"{this.URL}/countries");
 
                 var json = JsonConvert.SerializeObject(Country);

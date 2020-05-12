@@ -99,7 +99,7 @@ namespace CountryName.ViewModels
 
             await Navigation.PushPopupAsync(edit);
         }
-        async void ReloadItemsCommand()
+        void ReloadItemsCommand()
         {
             if (Items==null || Items.Count == 0)
                 LoadItemsCommand();
@@ -149,10 +149,9 @@ namespace CountryName.ViewModels
                     if (data != null && data.Error != null && data.Error.errorMessages?.Count > 0)
                     {
                         await page.DisplayAlert("Country", data.Error.errorMessages[0], "Ok");
-
                     }
                     else
-                        LoadItemsCommand();
+                        items.Remove(country);
                 }
             }
         }

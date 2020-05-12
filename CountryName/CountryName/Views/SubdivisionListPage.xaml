@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CountryName.Views.SubdivisionListPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             x:Name="subdivisionsPage">
      <ContentPage.ToolbarItems> 
         <ToolbarItem Icon="add.png" Command="{Binding NewSubdivision}" />
     </ContentPage.ToolbarItems>
@@ -10,7 +11,7 @@
         <RefreshView Command="{Binding LoadItems}"
                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                      RefreshColor="Black">
-            <CollectionView x:Name="CountrysList"
+            <CollectionView x:Name="SubdivisionsList"
                             BackgroundColor="#f7f7f7"
                             ItemsSource="{Binding Items}"
                             SelectionMode="None"
@@ -53,8 +54,15 @@
                                             Text="{Binding code}"/>
 
                                     <Button Grid.Column="0"
+                                            Grid.Row="1"
+                                            Text="Edit"
+                                            Command="{Binding Path=BindingContext.EditSubdivision, Source={x:Reference subdivisionsPage}}"
+                                            CommandParameter="{Binding .}"/>
+                                    <Button Grid.Column="1"
                                              Grid.Row="1"
-                                             Text="Edit"/>
+                                             Text="Delete"
+                                             Command="{Binding Path=BindingContext.Delete, Source={x:Reference subdivisionsPage}}"
+                                            CommandParameter="{Binding .}"/>
                                 </Grid>
                             </Frame>
                         </ContentView>
