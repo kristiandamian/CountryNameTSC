@@ -71,6 +71,9 @@ namespace CountryName.DAL
             Models.Subdivision data = null;
             try
             {
+                if (subdivision.id.HasValue)
+                    return await EditAsync(idCountry, subdivision);
+
                 var uri = new Uri($"{this.URL}/countries/{idCountry}/subdivisions");
 
                 var json = JsonConvert.SerializeObject(subdivision);
