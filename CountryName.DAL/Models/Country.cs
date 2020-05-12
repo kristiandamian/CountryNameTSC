@@ -7,6 +7,10 @@ namespace CountryName.DAL.Models
     {
         public List<Country> data { get; set; }
     }
+    public class RootSingleCountry
+    {
+        public Country data { get; set; }
+    }
     public class Country
     {
         public string name { get; set; }

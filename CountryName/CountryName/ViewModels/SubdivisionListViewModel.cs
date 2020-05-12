@@ -7,6 +7,7 @@ using Xamarin.Essentials;
 using CountryName.Views;
 using CountryName.Views.Modals;
 using Rg.Plugins.Popup.Extensions;
+using System.Linq;
 
 namespace CountryName.ViewModels
 {
@@ -113,9 +114,17 @@ namespace CountryName.ViewModels
         }
         async void EditSubdivisionCommand(DAL.Models.Subdivision subdivision)
         {
-            MessagingCenter.Subscribe<EditSubdivisionPage>(this, "ChangeSubdivision", (sender) =>
+            MessagingCenter.Subscribe<EditSubdivisionPage, DAL.Models.Subdivision>(this, "ChangeSubdivision", (sender, sub) =>
             {
-                this.LoadItemsCommand();
+                //this.LoadItemsCommand();
+                if(sub!=null)
+                {
+                    var pos= Items.IndexOf(Items.Where(x => x.id == sub.id).FirstOrDefault());
+                    if (pos >= 0)
+                        Items[pos] = sub;
+                    else //no existe
+                        Items.Add(sub);
+                }
             });
             var edit = new EditSubdivisionPage(country,subdivision) { CloseWhenBackgroundIsClicked = true };
 

@@ -72,7 +72,7 @@ namespace CountryName.ViewModels
                 var data = await new DAL.Subdivision().SaveAsync(country.id.Value, subdivision);
                 if (data != null && data.Error == null)
                 {
-                    MessagingCenter.Send<EditSubdivisionPage>((EditSubdivisionPage)page, "ChangeSubdivision");
+                    MessagingCenter.Send<EditSubdivisionPage,DAL.Models.Subdivision>((EditSubdivisionPage)page, "ChangeSubdivision", data);
                     await page.DisplayAlert("Subdivision", "Subdivision registered", "Ok");
                     CloseModalCommand();
                 }

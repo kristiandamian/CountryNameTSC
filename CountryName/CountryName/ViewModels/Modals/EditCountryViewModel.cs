@@ -120,7 +120,7 @@ namespace CountryName.ViewModels
                 var data = await new DAL.Country().SaveAsync(country);
                 if (data != null && data.Error==null)
                 {
-                    MessagingCenter.Send<EditCountryPage>((EditCountryPage)page, "ChangeCountry");
+                    MessagingCenter.Send<EditCountryPage, DAL.Models.Country>((EditCountryPage)page, "ChangeCountry", data);
                     await page.DisplayAlert("Country", "Country registered", "Ok");
                     CloseModalCommand();
                 }

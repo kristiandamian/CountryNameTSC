@@ -7,6 +7,10 @@ namespace CountryName.DAL.Models
     {
         public List<Subdivision> data { get; set; }
     }
+    public class RootSingleSubdivision
+    {
+        public Subdivision data { get; set; }
+    }
     public class Subdivision
     {
         public string name { get; set; }

@@ -7,6 +7,7 @@ using Xamarin.Essentials;
 using CountryName.Views;
 using Rg.Plugins.Popup.Extensions;
 using CountryName.Views.Modals;
+using System.Linq;
 
 namespace CountryName.ViewModels
 {
@@ -91,9 +92,17 @@ namespace CountryName.ViewModels
         }
         async void EditCountryCommand(DAL.Models.Country country)
         {
-            MessagingCenter.Subscribe<EditCountryPage>(this, "ChangeCountry", (sender) =>
+            MessagingCenter.Subscribe<EditCountryPage, DAL.Models.Country>(this, "ChangeCountry", (sender, arg) =>
             {
-                this.LoadItemsCommand();
+                //this.LoadItemsCommand();
+                if (arg != null)
+                {
+                    var pos = Items.IndexOf(Items.Where(x => x.id == arg.id).FirstOrDefault());
+                    if (pos >= 0)
+                        Items[pos] = arg;
+                    else //no existe
+                        Items.Add(arg);
+                }
             });
             var edit = new Views.Modals.EditCountryPage(country) { CloseWhenBackgroundIsClicked = true };
 

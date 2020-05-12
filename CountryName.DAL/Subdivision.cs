@@ -50,7 +50,9 @@ namespace CountryName.DAL
                 if (response.IsSuccessStatusCode)
                 {
                     var contentResponse = await response.Content.ReadAsStringAsync();
-                    data = JsonConvert.DeserializeObject<Models.Subdivision>(contentResponse);
+                    var root = JsonConvert.DeserializeObject<Models.RootSingleSubdivision>(contentResponse);
+                    if (root != null && root.data != null)
+                        data = root.data;
                 }
                 if ((int)response.StatusCode > 400)
                 {
@@ -83,7 +85,9 @@ namespace CountryName.DAL
                 if (response.IsSuccessStatusCode)
                 {
                     var contentResponse = await response.Content.ReadAsStringAsync();
-                    data = JsonConvert.DeserializeObject<Models.Subdivision>(contentResponse);
+                    var root = JsonConvert.DeserializeObject<Models.RootSingleSubdivision>(contentResponse);
+                    if (root != null && root.data != null)
+                        data = root.data;
                 }
                 if ((int)response.StatusCode > 400)
                 {
