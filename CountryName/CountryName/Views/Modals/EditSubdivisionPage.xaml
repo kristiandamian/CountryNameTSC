@@ -8,8 +8,8 @@
                  HorizontalOptions="Center"
                  Margin="0"
                  BackgroundColor="#DEE9FB"
-                 WidthRequest="500"
-                 HeightRequest="600">
+                 WidthRequest="300"
+                 HeightRequest="250">
         <Frame HasShadow="False"
                BackgroundColor="#DEE9FB">
             <StackLayout>

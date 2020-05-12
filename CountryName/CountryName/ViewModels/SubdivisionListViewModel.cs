@@ -83,7 +83,7 @@ namespace CountryName.ViewModels
             if (country != null && country.id.HasValue)
             {
                 var subs = await new DAL.Subdivision().AllFromCountryAsync(country.id.Value);
-                if (subs != null)
+                if (subs != null && subs.Count>0)
                 {
                     Items = new ObservableRangeCollection<DAL.Models.Subdivision>();
                     Items.AddRange(subs);
@@ -100,6 +100,10 @@ namespace CountryName.ViewModels
                 {
                     await page.DisplayAlert("Country Name", "The device doesn't have internet connection", "Ok");
                 });
+            }
+            else
+            {
+                this.LoadItemsCommand();
             }
         }
 

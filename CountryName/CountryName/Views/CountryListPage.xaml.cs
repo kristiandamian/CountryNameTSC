@@ -17,8 +17,8 @@ namespace CountryName.Views
         {
             base.OnAppearing();
             var viewModel = (CountryListViewModel)this.BindingContext;
-            if (viewModel.LoadItems.CanExecute(null))
-                viewModel.LoadItems.Execute(null);
+            if (viewModel.ReloadItems.CanExecute(null))
+                viewModel.ReloadItems.Execute(null);
         }
     }
 }

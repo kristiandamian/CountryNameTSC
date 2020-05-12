@@ -8,7 +8,7 @@
                  HorizontalOptions="Center"
                  Margin="0"
                  BackgroundColor="#DEE9FB"
-                 WidthRequest="500"
+                 WidthRequest="300"
                  HeightRequest="400">
         <Frame HasShadow="False"
                BackgroundColor="#DEE9FB">

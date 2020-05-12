@@ -7,17 +7,21 @@
         <ToolbarItem Icon="add.png" Command="{Binding NewSubdivision}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <RefreshView Command="{Binding LoadItems}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+        <RefreshView Command="{Binding LoadItems}"
+                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                     RefreshColor="Black">
             <CollectionView x:Name="CountrysList"
                             BackgroundColor="#f7f7f7"
                             ItemsSource="{Binding Items}"
-                            SelectionMode="Single"
+                            SelectionMode="None"
+                            IsGrouped="False"
                             VerticalOptions="FillAndExpand">
                  <CollectionView.EmptyView>
                       <Grid>
                       <Label Text="There's no subdivisions registered"
                              HorizontalOptions="Center"
-                             VerticalOptions="Center"/>
+                             VerticalOptions="Center"
+                             TextColor="Black"/>
                       </Grid>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>

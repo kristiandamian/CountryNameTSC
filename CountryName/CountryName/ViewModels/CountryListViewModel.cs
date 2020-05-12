@@ -59,6 +59,7 @@ namespace CountryName.ViewModels
                 }
             }
         }
+        public ICommand ReloadItems { get; set; }
         public ICommand LoadItems { get; set; }
         public ICommand SearchSubdivision { get; set; }
         public ICommand EndSession { get; set; }
@@ -70,6 +71,7 @@ namespace CountryName.ViewModels
             Navigation = nav;
             page = _page;
 
+            ReloadItems = new Command(ReloadItemsCommand);
             LoadItems = new Command(LoadItemsCommand);
             SearchSubdivision = new Command<DAL.Models.Country>(SearchSubdivisionCommand);
             EndSession = new Command(EndSessionCommand);
@@ -97,7 +99,12 @@ namespace CountryName.ViewModels
 
             await Navigation.PushPopupAsync(edit);
         }
-        
+        async void ReloadItemsCommand()
+        {
+            if (Items==null || Items.Count == 0)
+                LoadItemsCommand();
+        }
+
         async void LoadItemsCommand()
         {
             IsBusy = true;
@@ -118,6 +125,10 @@ namespace CountryName.ViewModels
                 {
                     await page.DisplayAlert("Country", "The device doesn't have internet connection", "Ok");
                 });
+            }
+            else
+            {
+                this.LoadItemsCommand();
             }
         }
 

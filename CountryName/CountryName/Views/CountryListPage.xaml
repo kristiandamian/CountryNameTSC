@@ -9,7 +9,9 @@
         <ToolbarItem Icon="logout.png" Command="{Binding EndSession}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <RefreshView Command="{Binding LoadItems}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+        <RefreshView Command="{Binding LoadItems}"
+                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                     RefreshColor="Black">
             <CollectionView x:Name="CountrysList"
                             BackgroundColor="#f7f7f7"
                             ItemsSource="{Binding Items}"
@@ -19,7 +21,8 @@
                       <Grid>
                       <Label Text="There's no countries registered"
                              HorizontalOptions="Center"
-                             VerticalOptions="Center"/>
+                             VerticalOptions="Center"
+                             TextColor="Black"/>
                       </Grid>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
