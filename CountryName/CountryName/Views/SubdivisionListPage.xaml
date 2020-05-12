@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CountryName.Views.SubdivisionListPage"
+             Title="{Binding Title}">
+     <ContentPage.ToolbarItems> 
+        <ToolbarItem Icon="add.png" Command="{Binding NewSubdivision}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <RefreshView Command="{Binding LoadItems}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+            <CollectionView x:Name="CountrysList"
+                            BackgroundColor="#f7f7f7"
+                            ItemsSource="{Binding Items}"
+                            SelectionMode="Single"
+                            VerticalOptions="FillAndExpand">
+                 <CollectionView.EmptyView>
+                      <Grid>
+                      <Label Text="There's no subdivisions registered"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+                      </Grid>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <Frame BackgroundColor="LightGray"
+                                   CornerRadius="10"
+                                   Margin="10,10,10,10"
+                                   Padding="10,5,10,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50*"/>
+                                        <ColumnDefinition Width="50*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                     <Label Grid.Column="0"
+                                            Grid.Row="0"
+                                            FontSize="Large"
+                                            TextColor="Black" 
+                                            Text="{Binding name}"/>
+                                     <Label Grid.Column="1"
+                                            Grid.Row="0"
+                                            HorizontalTextAlignment="End"
+                                            FontSize="Header"
+                                            FontAttributes="Bold"
+                                            TextColor="Black"
+                                            Text="{Binding code}"/>
+
+                                    <Button Grid.Column="0"
+                                             Grid.Row="1"
+                                             Text="Edit"/>
+                                </Grid>
+                            </Frame>
+                        </ContentView>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

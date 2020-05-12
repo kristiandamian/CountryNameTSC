@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CountryName.Views.LoginPage">
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="White">
+            <StackLayout Spacing="10" >
+                  <Image Source="logo.png"
+                         Margin="10,20,10,10"/>
+                   <Label HeightRequest="110"
+                          HorizontalOptions="FillAndExpand" 
+                          Text="Country codes" 
+                          TextColor="Black" 
+                          FontSize="35" 
+                          HorizontalTextAlignment="Center"
+                          VerticalTextAlignment="Center"/>
+                
+                 <Entry  Margin="20,0,20,0" 
+                         HeightRequest="50"
+                         Text="{Binding User}"
+                         TextColor="Black"
+                         BackgroundColor="White"
+                         Placeholder="Email">
+                    
+                 </Entry>
+                
+                 <Entry Margin="20,0,20,0" 
+                        HeightRequest="50" IsPassword="true"
+                        Text="{Binding Password}"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        Placeholder="Password">
+                   
+                 </Entry>
+                
+                
+                 <Button Margin="20,0,20,0" 
+                         HeightRequest="50" 
+                         TextColor="White" 
+                         Text="Login"
+                         Command="{Binding Login}"
+                         BackgroundColor="Gray"
+                         HorizontalOptions="FillAndExpand"/>
+
+                <Label Text="Forgot password" 
+                        HorizontalOptions="Center" 
+                        TextColor="Black"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

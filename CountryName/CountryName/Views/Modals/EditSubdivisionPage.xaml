@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:local="clr-namespace:CountryName;assembly=CountryName"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 x:Class="CountryName.Views.Modals.EditSubdivisionPage">
+     <StackLayout VerticalOptions="Center"
+                 HorizontalOptions="Center"
+                 Margin="0"
+                 BackgroundColor="#DEE9FB"
+                 WidthRequest="500"
+                 HeightRequest="600">
+        <Frame HasShadow="False"
+               BackgroundColor="#DEE9FB">
+            <StackLayout>
+                <Label Text="Name"
+                       TextColor="Black"
+                       FontSize="Subtitle"/>
+                <Entry Keyboard="Text"
+                       TextColor="Black"
+                       Text="{Binding Name}"
+                       BackgroundColor="White">
+                     <Entry.Behaviors>
+                      <local:RequieredEntry x:Name="CodeValidator"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Text="Code"
+                       TextColor="Black"
+                       FontSize="Subtitle"/>
+                <Entry Keyboard="Numeric"
+                       Text="{Binding Code}"
+                       TextColor="Black"
+                       BackgroundColor="White">
+                    <Entry.Behaviors>
+                      <local:NumericEntry  />
+                      <local:RequieredEntry x:Name="CodeValidator4"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="FillAndExpand">
+                    <Button Text="Save"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding Save}"/>
+
+                    <Button Text="Close"
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="Gray"
+                            TextColor="White"
+                            Command="{Binding CloseModal}"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>
