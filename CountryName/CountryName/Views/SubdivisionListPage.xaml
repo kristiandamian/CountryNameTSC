@@ -4,6 +4,13 @@
              x:Class="CountryName.Views.SubdivisionListPage"
              Title="{Binding Title}"
              x:Name="subdivisionsPage">
+    <ContentPage.Resources>
+        <OnPlatform x:Key="fontSize" 
+               x:TypeArguments="Font">
+            <On Platform="Android" Value="Bold,Large" />
+            <On Platform="iOS" Value="Bold,Header" />
+        </OnPlatform>
+    </ContentPage.Resources>
      <ContentPage.ToolbarItems> 
         <ToolbarItem Icon="add.png" Command="{Binding NewSubdivision}" />
     </ContentPage.ToolbarItems>
@@ -48,11 +55,9 @@
                                      <Label Grid.Column="1"
                                             Grid.Row="0"
                                             HorizontalTextAlignment="End"
-                                            FontSize="Header"
-                                            FontAttributes="Bold"
                                             TextColor="Black"
+                                             Font="{StaticResource fontSize}"
                                             Text="{Binding code}"/>
-
                                     <Button Grid.Column="0"
                                             Grid.Row="1"
                                             Text="Edit"

@@ -4,6 +4,14 @@
              x:Class="CountryName.Views.CountryListPage"
              Title="Countries"
              x:Name="countriesPage">
+    <ContentPage.Resources>
+        <OnPlatform x:Key="fontSize" 
+               x:TypeArguments="Font">
+            <On Platform="Android" Value="Bold,Large" />
+            <On Platform="iOS" Value="Bold,Header" />
+        </OnPlatform>
+    </ContentPage.Resources>
+
     <ContentPage.ToolbarItems> 
         <ToolbarItem Icon="add.png" Command="{Binding NewCountry}"/>
         <ToolbarItem Icon="logout.png" Command="{Binding EndSession}" />
@@ -50,11 +58,9 @@
                                      <Label Grid.Column="2"
                                             Grid.Row="0"
                                             HorizontalTextAlignment="End"
-                                            FontSize="Header"
-                                            FontAttributes="Bold"
+                                            Font="{StaticResource fontSize}"
                                             TextColor="Black"
                                             Text="{Binding alpha2}"/>
-
                                     <Button Grid.Column="0"
                                             Grid.Row="1"
                                             Text="Edit"

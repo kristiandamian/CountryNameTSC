@@ -9,7 +9,7 @@
                  Margin="0"
                  BackgroundColor="#DEE9FB"
                  WidthRequest="300"
-                 HeightRequest="400">
+                 HeightRequest="450">
         <Frame HasShadow="False"
                BackgroundColor="#DEE9FB">
             <StackLayout>
